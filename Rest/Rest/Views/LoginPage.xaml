@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             mc:Ignorable="d"
+             x:Class="Rest.Views.LoginPage" BackgroundColor="Gainsboro">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Welcome to Xamarin.Forms!"/>
+            <Entry Text="maxime.orn@gmail.com" Placeholder="Login" Margin="20" x:Name="LoginEntry"></Entry>
+            <Entry Text="123456" Placeholder="Password" Margin="20" x:Name="PasswordEntry" IsPassword="true"></Entry>
+            <Button Text="Login" x:Name="LoginButton" Margin="20" WidthRequest="200" Clicked="LoginButton_Clicked"></Button>
+            <Label Text="Token Key" x:Name="TokenLabel" Margin="20"/>
+
+            <ContentView>
+    
+                <ffimageloading:CachedImage IsVisible="False" HeightRequest="100" WidthRequest="100" HorizontalOptions="Center" VerticalOptions="Center" Aspect="AspectFill" x:Name="waitingGif" Source="waiting.gif" Margin="0" CacheDuration="15"/>
+
+            </ContentView>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
