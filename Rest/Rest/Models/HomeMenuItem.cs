@@ -8,6 +8,7 @@ namespace Rest.Models
     {
         Browse,
         Login,
+        Profile,
         About
     }
     public class HomeMenuItem
