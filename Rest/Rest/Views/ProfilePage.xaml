@@ -3,13 +3,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ViewModels="clr-namespace:Rest.ViewModels"
              mc:Ignorable="d"
-             x:Class="Rest.Views.ProfilePage">
+             x:Class="Rest.Views.ProfilePage"             
+             Appearing="ContentPage_Appearing">
+    <ContentPage.BindingContext>
+        <ViewModels:ProfileViewModel/>
+    </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout>
-            <Label  x:Name="userData" Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Label Text="Name" Margin="20"/>
+            <Label Text="{Binding ProfileData.Name}" Margin="20"/>
+            <Label Text="Email" Margin="20"/>
+            <Label Text="{Binding ProfileData.Email}" Margin="20"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

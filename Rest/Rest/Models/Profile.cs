@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Rest.Models
 {
-    class CurrentUser : User
+    class Profile : User
     {
         public string Name { set; get; }
     }

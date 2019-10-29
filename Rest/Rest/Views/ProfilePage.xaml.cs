@@ -8,42 +8,26 @@ using Xamarin.Forms.Xaml;
 using System.Net.Http;
 using Newtonsoft.Json;
 using System.Net;
+using Rest.ViewModels;
 
 namespace Rest.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ProfilePage : ContentPage
-    {
-        HttpClient _client;
-        readonly string uri = "http://dfe44795.ngrok.io/profile";
-
+    {        
+        private ProfileViewModel MyProfileViewModel = new ProfileViewModel();
         public ProfilePage()
-        {
-            
+        {            
             InitializeComponent();
+            BindingContext = MyProfileViewModel;
+
         }
 
-        private async void LoadProfile()
-        { 
-            _client = new HttpClient();
-            var request = new HttpRequestMessage()
-            {
-                RequestUri = new Uri(uri),
-                Method = HttpMethod.Get,
-                Headers = {
-                    {HttpRequestHeader.Authorization.ToString(), "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJsdW1lbi1qd3QiLCJzdWIiOjEsImlhdCI6MTU3MjI2NjI2NCwiZXhwIjoxNTcyMjY5ODY0fQ.yCR8hHs4wiDoSqF9e4KHl3EZPpLf6fIWTZKBVgtbQd4" },
-                    {HttpRequestHeader.Accept.ToString(), "application/json" },
-                    {"X-Version", "1" }
-                
-                },
-            };
-            var response = await _client.SendAsync(request);
-            if (response.IsSuccessStatusCode)
-            {
-                var content = await response.Content.ReadAsStringAsync();
-                userData.Text = content;
-            }           
-
+        private void ContentPage_Appearing(object sender, EventArgs e)
+        {
+            MyProfileViewModel.LoadProfile();
         }
     }
 }
+
+

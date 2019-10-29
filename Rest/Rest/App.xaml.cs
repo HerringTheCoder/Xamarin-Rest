@@ -15,7 +15,7 @@ namespace Rest
             DependencyService.Register<MockDataStore>();
             DependencyService.Register<ApiService>();
             MainPage = new MainPage();
-            Current.Properties["uri"] = "http://0cba7345.ngrok.io";
+            Current.Properties["uri"] = "http://376f539b.ngrok.io";
         }
 
         protected override void OnStart()

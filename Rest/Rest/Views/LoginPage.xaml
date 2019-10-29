@@ -3,16 +3,20 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"            
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:ViewModels="clr-namespace:Rest.ViewModels"
              mc:Ignorable="d"
              x:Class="Rest.Views.LoginPage" BackgroundColor="Gainsboro">
+    <ContentPage.BindingContext>
+        <ViewModels:LoginViewModel/>
+    </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout>
             <Label Text="Welcome to Xamarin.Forms!"/>
-            <Entry x:Name="LoginEntry" Text="{Binding currentUser.Email, Mode=TwoWay}" Placeholder="Login" Margin="20" ></Entry>
-            <Entry Text="{Binding currentUser.Password, Mode=TwoWay}" Placeholder="{Binding currentUser.Email}" Margin="20" x:Name="PasswordEntry" IsPassword="true" BindingContext=""></Entry>
+            <Entry x:Name="LoginEntry" Text="{Binding AttemptingUser.Email, Mode=TwoWay}" Placeholder="Email" Margin="20" ></Entry>
+            <Entry x:Name="PasswordEntry" Text="{Binding AttemptingUser.Password, Mode=TwoWay}" Placeholder="Password" Margin="20"  IsPassword="true"></Entry>
             <Button Text="Login" x:Name="LoginButton" Margin="20" WidthRequest="200" Clicked="LoginButton_Clicked"></Button>
-            <Label Text="{Binding Response, Mode=TwoWay}" x:Name="TokenLabel" Margin="20"/>
+            <Label Text="{Binding Response, Mode=OneWay}" x:Name="TokenLabel" Margin="20"/>
 
             <ContentView>
     

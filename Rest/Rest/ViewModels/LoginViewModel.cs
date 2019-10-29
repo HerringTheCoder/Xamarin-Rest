@@ -9,24 +9,41 @@ namespace Rest.ViewModels
 {
     class LoginViewModel : BaseViewModel
     {
-        public User currentUser = new User();
-         //todo: global config variable
-        public string Response
-        { get; set; }            
-        public LoginViewModel()
+        private User _user = new User();
+        public User AttemptingUser
         {
-            currentUser.Email = "maxime.orn@gmail.com";
-            currentUser.Password = "123456";
+            get { return _user; }
+            set
+            {
+                SetProperty(ref _user, value);
+            }
+        }
+        //todo: global config variable
+        private string _response = null;
+        public string Response { 
+            get { return _response; }
+            set
+            {
+                SetProperty(ref _response, value);
+            }
+}
+public LoginViewModel()
+        {
+            this.AttemptingUser = new User();
+            Title = "Login";
+            AttemptingUser.Email = "maxime.orn@gmail.com";
+            AttemptingUser.Password = "123456";
         }
 
         public async void AttemptLogin()
         {
             
-            var json = JsonConvert.SerializeObject(currentUser);                        
-            var response = await MyApiService.PostRequest("/auth/login/", json);            
+            var json = JsonConvert.SerializeObject(AttemptingUser);
+            var response = await MyApiService.PostRequest("/auth/login/", json);
             this.Response = await response.Content.ReadAsStringAsync();
-            Application.Current.Properties["token"] = this.Response;
-            
+            var accessToken = JsonConvert.DeserializeObject<AccessToken>(this.Response).Value;
+            Application.Current.Properties["token"] = accessToken;
+            this.Response = accessToken;            
         }
     }
 }
