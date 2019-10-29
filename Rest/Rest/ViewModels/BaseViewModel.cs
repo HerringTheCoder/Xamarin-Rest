@@ -13,6 +13,7 @@ namespace Rest.ViewModels
     public class BaseViewModel : INotifyPropertyChanged
     {
         public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
+        public IApiService MyApiService => DependencyService.Get <IApiService>();
 
         bool isBusy = false;
         public bool IsBusy

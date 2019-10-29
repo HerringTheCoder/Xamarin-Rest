@@ -10,7 +10,7 @@ namespace Rest.ViewModels
         public ItemDetailViewModel(Item item = null)
         {
             Title = item?.Text;
-            Item = item;
+            Item = item;            
         }
     }
 }

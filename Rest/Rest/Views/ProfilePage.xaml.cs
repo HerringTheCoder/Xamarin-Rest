@@ -19,12 +19,12 @@ namespace Rest.Views
 
         public ProfilePage()
         {
-            GetProfile();
+            
             InitializeComponent();
         }
 
-        private async void GetProfile()
-        {
+        private async void LoadProfile()
+        { 
             _client = new HttpClient();
             var request = new HttpRequestMessage()
             {
